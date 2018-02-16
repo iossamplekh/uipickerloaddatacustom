@@ -45,14 +45,6 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         return components
     }
     
-    func resetPicker(){
-        samplePickerView.reloadAllComponents()
-        for index in 0..<components.count{
-            samplePickerView.selectRow(0, inComponent: index, animated: true)
-            
-        }
-    }
-    
     //:MARK - Delegates and data sources
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return components.count
