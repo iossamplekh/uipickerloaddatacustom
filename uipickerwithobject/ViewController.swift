@@ -18,6 +18,17 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     var components = [[String]]()
     var resultString = ""
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        samplePickerView.dataSource = self
+        samplePickerView.delegate = self
+        sampleSegmentControl.selectedSegmentIndex = 0
+        
+        let pickerComponentString = sampleSegmentControl.titleForSegment(at: 0)!
+        components = numberPickerComponents(from: pickerComponentString)
+        
+    }
+    
     @IBAction func segementControl(_ sender: Any) {
         let index = sampleSegmentControl.selectedSegmentIndex
         let pickerComponentString = sampleSegmentControl.titleForSegment(at: index)!
@@ -52,17 +63,6 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
             samplePickerView.selectRow(0, inComponent: index, animated: true)
             
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        samplePickerView.dataSource = self
-        samplePickerView.delegate = self
-        sampleSegmentControl.selectedSegmentIndex = 0
-        
-        let pickerComponentString = sampleSegmentControl.titleForSegment(at: 0)!
-        components = numberPickerComponents(from: pickerComponentString)
-        
     }
     
     //:MARK - Delegates and data sources
