@@ -25,8 +25,9 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         sampleSegmentControl.selectedSegmentIndex = 0
         
         let pickerComponentString = sampleSegmentControl.titleForSegment(at: 0)!
-        components = numberPickerComponents(from: pickerComponentString)
-        
+        print("pickerComponentString: \(pickerComponentString)")
+        //components = numberPickerComponents(from: pickerComponentString)
+        components = numberPickerComponents(from: "na")
     }
     
     @IBAction func segementControl(_ sender: Any) {
@@ -49,10 +50,22 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         }
     }
     
+    func numberPickerComponentCustom(from char:Character) -> [String]{
+        switch char{
+        case "n":
+            return ["Health","Sport","Nature"]
+        case "a":
+            return ["Author1","Author2","Author3"]
+        default:
+            return [String(char)]
+        }
+    }
+    
     func numberPickerComponents(from string:String)->[[String]]{
         var components = [[String]]()
         for char in string.characters{
-            components += [numberPickerComponent(from:char)]
+//            components += [numberPickerComponent(from:char)]
+            components += [numberPickerComponentCustom(from:char)]
         }
         return components
     }
