@@ -13,7 +13,6 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     
     @IBOutlet var displayLabel: UILabel!
     @IBOutlet var samplePickerView: UIPickerView!
-    @IBOutlet var sampleSegmentControl: UISegmentedControl!
     
     var components = [[String]]()
     var resultString = ""
@@ -22,34 +21,11 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
         super.viewDidLoad()
         samplePickerView.dataSource = self
         samplePickerView.delegate = self
-        sampleSegmentControl.selectedSegmentIndex = 0
         
-        let pickerComponentString = sampleSegmentControl.titleForSegment(at: 0)!
-        print("pickerComponentString: \(pickerComponentString)")
-        //components = numberPickerComponents(from: pickerComponentString)
         components = numberPickerComponents(from: "na")
     }
     
-    @IBAction func segementControl(_ sender: Any) {
-        let index = sampleSegmentControl.selectedSegmentIndex
-        let pickerComponentString = sampleSegmentControl.titleForSegment(at: index)!
-        components = numberPickerComponents(from: pickerComponentString)
-        resetPicker()
-    }
-    
-    func numberPickerComponent(from char:Character) -> [String]{
-        switch char{
-        case "9":
-            return ["0","1","2","3","4","5","6","7","8","9"]
-        case "5":
-            return ["0","1","2","3","4","5"]
-        case "x":
-            return ["0"," 1/16","1/8","3/16","1/4","5/16","3/8","7/16","1/2","9/16","5/8","11/16","3/4","13/16","7/8","15/16"]
-        default:
-            return [String(char)]
-        }
-    }
-    
+
     func numberPickerComponentCustom(from char:Character) -> [String]{
         switch char{
         case "n":
@@ -64,7 +40,6 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     func numberPickerComponents(from string:String)->[[String]]{
         var components = [[String]]()
         for char in string.characters{
-//            components += [numberPickerComponent(from:char)]
             components += [numberPickerComponentCustom(from:char)]
         }
         return components
